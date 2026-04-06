@@ -21,6 +21,7 @@ jobs:
         run: |
           curl -s https://install.zerotier.com | sudo bash
           sudo zerotier-cli info
+      
       - name: Start ZeroTier
         env:
           # 如果修改了 IP_ASSIGNMENT，那么对于 clash 配置的服务器地址也应当同步。
@@ -32,6 +33,7 @@ jobs:
           echo "Member Id is ${memberId}"
           curl -X POST -H "Content-Type: application/json" -H "Authorization: token ${ZEROTIER_TOKEN}" -d "{\"config\": { \"ipAssignments\": [ \"$IP_ASSIGNMENT\" ] }}" https://api.zerotier.com/api/v1/network/${ZEROTIER_NETWORK_ID}/member/${memberId}
           sudo zerotier-cli join ${ZEROTIER_NETWORK_ID}
+       
         - name: Start V2ray
   timeout-minutes: 60
   env:
