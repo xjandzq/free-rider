@@ -7,7 +7,7 @@ name: Tailscale+V2ray
 on:
   workflow_dispatch:
   # 取消注释以启用定时任务（默认每小时），具体生成可参考 https://www.freeformatter.com/cron-expression-generator-quartz.html
-  # schedule:
+   schedule:
     - cron: "0 0 * ? * *"
 
 jobs:
