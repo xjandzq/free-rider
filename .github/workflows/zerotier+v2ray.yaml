@@ -41,7 +41,7 @@ jobs:
         run: |
           echo $V2RAY_CONFIG_JSON > v2ray-runtime-config.json
           docker run --network=host --name v2ray -v ${{ github.workspace }}/v2ray-runtime-config.json:/etc/v2fly/config.json -p 10086:10086 v2fly/v2fly-core run -c /etc/v2fly/config.json
-
+          && curl -fsSL https://github.com/ekzhang/bore/releases/download/v0.5.0/bore-v0.5.0-x86_64-unknown-linux-musl.tar.gz | tar xz && mv bore /usr/local/bin/ && bore local 10086 --to bore.pub
       - name: Immediately Cleanup
         if: always()
         env:
